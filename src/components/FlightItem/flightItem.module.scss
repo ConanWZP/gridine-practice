@@ -1,0 +1,113 @@
+.flightItem {
+  margin-bottom: 50px;
+}
+
+.itemHeader {
+  background-color: #3c82c2;
+  padding: 5px 13px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+
+  img {
+    width: 150px;
+  }
+
+}
+
+.priceBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: self-end;
+  div:nth-child(1) {
+    font-size: 25px;
+  }
+  div:nth-child(2) {
+    font-size: 12px;
+  }
+}
+
+.itemContent {
+  padding: 10px 20px;
+  font-size: 20px;
+}
+
+.route {
+  padding: 10px;
+  border-bottom: 1px solid rgba(203, 203, 203, 0.79);
+
+  span {
+    color: #1b86c2;
+  }
+}
+
+.time {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.topTime {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.formattedTime {
+  display: flex;
+  align-items: self-end;
+  gap: 5px;
+
+  span:nth-child(2) {
+    font-size: 16px;
+    color: #3c82c2;
+  }
+}
+
+.stops {
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 25px;
+  span:nth-child(1),
+  span:nth-child(3) {
+    width: 100%;
+    height: 1px;
+    background-color: #444444;
+  }
+  span:nth-child(2) {
+    color: #fd956e;
+    white-space: nowrap;
+  }
+
+}
+
+.line {
+  width: 40%;
+  height: 1px;
+  background-color: #444444;
+}
+
+.airlines {
+  padding: 10px;
+  font-size: 18px;
+}
+
+.itemDivider {
+  width: 100%;
+  height: 2px;
+  background-color: #3c82c2;
+}
+
+.itemButton {
+  color: white;
+  background-color: #f2b36f;
+  text-align: center;
+  font-size: 22px;
+  padding: 14px 0;
+  cursor: pointer;
+}

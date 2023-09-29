@@ -1,0 +1,69 @@
+.wrapper {
+
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  min-width: 300px;
+}
+
+.sortBlock {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: gray;
+  font-weight: 400;
+
+}
+
+h2 {
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #444444;
+}
+
+.priceSort {
+  margin-bottom: 20px;
+  /* Works for Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Works for Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  input {
+    outline: none;
+  }
+
+}
+
+/*
+h3 {
+  font-weight: 100;
+}*/
+.companyItem {
+  display: flex;
+  align-items: center;
+}
+
+.companyName {
+  display: inline-block;
+  width: 135px; /* the element needs a fixed width (in px, em, %, etc) */
+  overflow: hidden; /* make sure it hides the content that overflows */
+  white-space: nowrap; /* don't break the line */
+  text-overflow: ellipsis; /* give the beautiful '...' effect */
+  margin-right: 8px;
+}
