@@ -15,7 +15,7 @@ const ItemContent:FC<ItemContentProps> = ({segmentsQuantity, legNumber, data}) =
     return (
         <div className={styles.itemContent}>
             <div className={styles.route}>
-                {data.legs[legNumber].segments[0].departureCity.caption}, {data.legs[legNumber].segments[0].departureAirport.caption} <span>({data.legs[legNumber].segments[0].departureAirport.uid}) → </span>
+                {data.legs[legNumber].segments[0]?.departureCity?.caption}, {data.legs[legNumber].segments[0].departureAirport.caption} <span>({data.legs[legNumber].segments[0].departureAirport.uid}) → </span>
                 {data.legs[legNumber].segments[segmentsQuantity-1].arrivalCity.caption}, {data.legs[legNumber].segments[segmentsQuantity-1].arrivalAirport.caption} <span>({data.legs[legNumber].segments[segmentsQuantity-1].arrivalAirport.uid})</span>
             </div>
             <div className={styles.time}>

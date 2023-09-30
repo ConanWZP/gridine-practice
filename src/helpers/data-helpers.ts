@@ -15,7 +15,6 @@ export function getDayOfWeek(date: string) {
 
 export function getMonthOfYear(date: string) {
     const dayOfWeek = new Date(date).getMonth();
-    console.log(dayOfWeek)
     return isNaN(dayOfWeek) ? null :
         ['янв.', 'фев.', 'март', 'апр.', 'май', 'июнь', 'июль', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.'][dayOfWeek];
 }
