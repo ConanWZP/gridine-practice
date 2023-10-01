@@ -1,11 +1,15 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 interface IFiltersSlice {
-    filteredResults: any[]
+    filteredResults: any[],
+    minPriceRange: number,
+    maxPriceRange: number
 }
 
 const initialState: IFiltersSlice = {
-    filteredResults: []
+    filteredResults: [],
+    minPriceRange: 0,
+    maxPriceRange: 300000
 }
 
 export const filtersSlice = createSlice({
@@ -23,21 +27,18 @@ export const filtersSlice = createSlice({
             switch (sortValue) {
                 case 'asc-price':
                     let array = [...flights]
-                    return {
-                        filteredResults: array.sort((a,b) =>  Number(a.flight.price.total.amount) - Number(b.flight.price.total.amount)  )
-                    }
+                    state.filteredResults = array.sort((a,b) =>  Number(a.flight.price.total.amount) - Number(b.flight.price.total.amount)  )
+                    break
 
                 case 'desc-price':
                     let array2 = [...flights]
-                    return  {
-                        filteredResults: array2.sort((a,b) =>  Number(b.flight.price.total.amount) - Number(a.flight.price.total.amount)  )
-                    }
+                    state.filteredResults = array2.sort((a,b) =>  Number(b.flight.price.total.amount) - Number(a.flight.price.total.amount)  )
+                    break
 
                 case 'time':
                     let array3 = [...flights]
-                    return {
-                        filteredResults: array3.sort((a,b) =>  Number(a.flight.legs[0].duration + a.flight.legs[1].duration) - Number(b.flight.legs[0].duration + b.flight.legs[1].duration)  )
-                    }
+                    state.filteredResults = array3.sort((a,b) =>  Number(a.flight.legs[0].duration + a.flight.legs[1].duration) - Number(b.flight.legs[0].duration + b.flight.legs[1].duration)  )
+                    break
             }
 
         },
@@ -48,14 +49,31 @@ export const filtersSlice = createSlice({
             if (stops.length === maxQuantityStops || stops.length === 0) {
                 state.filteredResults = flights
             } else {
-                state.filteredResults= flights.filter(fl => stops.includes(fl.flight.legs[0].segments.length-1) && stops.includes(fl.flight.legs[1].segments.length-1) )
+                state.filteredResults = flights.filter(fl => stops.includes(fl.flight.legs[0].segments.length-1) && stops.includes(fl.flight.legs[1].segments.length-1) )
             }
             console.log('Полёты', flights)
             console.log(stops)
+        },
+        filterCompanies: (state, action) => {
+            const {flights, companies, arrayWithUniqCompany} = action.payload
+            debugger
+            if (companies.length === arrayWithUniqCompany.length || companies.length === 0) {
+                state.filteredResults = flights
+            } else {
+                state.filteredResults = flights.filter(fl => companies.includes(fl.flight.carrier.caption ) )
+            }
+
+        },
+        filterByPrice: (state, action) => {
+            const {flights, minValue, maxValue} = action.payload
+            state.filteredResults = flights.filter(fl => (+fl.flight.price.total.amount >= minValue) && (+fl.flight.price.total.amount <= maxValue) )
+            state.minPriceRange = minValue
+            state.maxPriceRange = maxValue
+
         }
     }
 })
 
-export const {sortFlightsBy, filterStops, setData} = filtersSlice.actions
+export const {sortFlightsBy, filterStops, setData, filterCompanies, filterByPrice} = filtersSlice.actions
 
 export default filtersSlice.reducer
