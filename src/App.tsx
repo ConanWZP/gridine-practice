@@ -45,11 +45,12 @@ const App = () => {
     const [arrayWithUniqCompany, setArrayWithUniqCompany] = useState<string[]>([...new Set(data.result.flights.map((fl: any) => fl.flight.carrier.caption))] as string[])
 
     useEffect(() => {
-
+       // setArrayWithUniqCompany([...new Set(data.result.flights.filter((fl: any) => (+fl.flight.price.total.amount >= minPrice) && (+fl.flight.price.total.amount <= maxPrice) ).map((fl: any) => fl.flight.carrier.caption))] as string[])
+       // setArrayWithUniqCompany([...new Set(filteredResults.filter((fl: any) => (+fl.flight.price.total.amount >= minPrice) && (+fl.flight.price.total.amount <= maxPrice) ).map((fl) => fl.flight.carrier.caption))])
         if (maxQuantityStops + 1 === stops.length || stops.length === 0) {
             setArrayWithUniqCompany([...new Set(data.result.flights.filter((fl: any) => (+fl.flight.price.total.amount >= minPrice) && (+fl.flight.price.total.amount <= maxPrice) ).map((fl: any) => fl.flight.carrier.caption))] as string[])
         } else {
-            setArrayWithUniqCompany([...new Set(filteredResults.map((fl) => fl.flight.carrier.caption))])
+            setArrayWithUniqCompany([...new Set(filteredResults.filter((fl: any) => (+fl.flight.price.total.amount >= minPrice) && (+fl.flight.price.total.amount <= maxPrice) ).map((fl) => fl.flight.carrier.caption))])
         }
 
 

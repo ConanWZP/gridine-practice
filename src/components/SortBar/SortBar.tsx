@@ -100,7 +100,7 @@ const SortBar: FC<SortBarProps> = ({arrayWithQuantityStops, arrayWithUniqCompany
 
     const changePriceRange = (numb: any) => {
 
-
+        setChosenCompanies([])
         const {flightsArray} = conditionalFlights([...data.result.flights], stops, chosenCompanies, maxQuantityStops+1, arrayWithUniqCompany)
         const sortedFlightsArray = [...flightsArray].sort((a,b) =>  Number(a.flight.price.total.amount) - Number(b.flight.price.total.amount)  )
         if (numb.name === 'min-price') {
@@ -199,8 +199,8 @@ const SortBar: FC<SortBarProps> = ({arrayWithQuantityStops, arrayWithUniqCompany
                 <div className={styles.sortBlock}>
                     <h2>Авиакомпании</h2>
                     {
-                        arrayWithUniqCompany.map((string) => (
-                            <div className={styles.sort} key={string}>
+                        arrayWithUniqCompany.map((string, index) => (
+                            <div className={styles.sort} key={index}>
                                 <input type={'checkbox'}  checked={chosenCompanies.includes(string)} onChange={() => chooseCompanies(string)}/>
                                 <div>-</div>
                                 <div className={styles.companyItem}><span className={styles.companyName}>{string}</span> от {calculateMinPrice(string)} р.</div>
