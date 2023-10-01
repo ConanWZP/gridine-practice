@@ -49,7 +49,7 @@ export const filtersSlice = createSlice({
             if (stops.length === maxQuantityStops || stops.length === 0) {
                 state.filteredResults = flights
             } else {
-                state.filteredResults = flights.filter(fl => stops.includes(fl.flight.legs[0].segments.length-1) && stops.includes(fl.flight.legs[1].segments.length-1) )
+                state.filteredResults = flights.filter((fl: any) => stops.includes(fl.flight.legs[0].segments.length-1) && stops.includes(fl.flight.legs[1].segments.length-1) )
             }
             console.log('Полёты', flights)
             console.log(stops)
@@ -60,13 +60,13 @@ export const filtersSlice = createSlice({
             if (companies.length === arrayWithUniqCompany.length || companies.length === 0) {
                 state.filteredResults = flights
             } else {
-                state.filteredResults = flights.filter(fl => companies.includes(fl.flight.carrier.caption ) )
+                state.filteredResults = flights.filter((fl: any) => companies.includes(fl.flight.carrier.caption ) )
             }
 
         },
         filterByPrice: (state, action) => {
             const {flights, minValue, maxValue} = action.payload
-            state.filteredResults = flights.filter(fl => (+fl.flight.price.total.amount >= minValue) && (+fl.flight.price.total.amount <= maxValue) )
+            state.filteredResults = flights.filter((fl: any) => (+fl.flight.price.total.amount >= minValue) && (+fl.flight.price.total.amount <= maxValue) )
             state.minPriceRange = minValue
             state.maxPriceRange = maxValue
 

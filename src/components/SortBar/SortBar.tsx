@@ -2,7 +2,7 @@ import styles from './sortBar.module.scss'
 import {FC} from "react";
 import {filterByPrice, filterCompanies, filterStops, sortFlightsBy} from "../../redux/slices/filtersSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../hooks/customHooks.ts";
-import data from './../../flights.json'
+import dataMock from './../../flights.json'
 import { conditionalFlights } from '../../helpers/conditionalFlights.ts';
 import {useDebounce} from "../../hooks/useDebounce.ts";
 
@@ -31,6 +31,7 @@ const SortBar: FC<SortBarProps> = ({arrayWithQuantityStops, arrayWithUniqCompany
                                        setChosenCompanies, chosenCompanies, maxPrice,
                                        setMaxPrice, setMinPrice, minPrice}) => {
 
+    const data: any = dataMock
     const {filteredResults} = useAppSelector(state => state.filters)
     const dispatch = useAppDispatch()
 
@@ -80,7 +81,7 @@ const SortBar: FC<SortBarProps> = ({arrayWithQuantityStops, arrayWithUniqCompany
         setChosenCompanies(newCompany)
     }
 
-    const callDeb = useDebounce((value) => {
+    const callDeb = useDebounce((value: any) => {
        // console.log(edge)
         /*if (edge === 'min-price') {
             setMinPrice(value.minValue > maxPrice ? maxPrice : value.minValue)

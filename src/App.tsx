@@ -1,5 +1,5 @@
 import './App.scss'
-import data from './flights.json'
+import dataMock from './flights.json'
 import SortBar from "./components/SortBar/SortBar.tsx";
 import FlightItem from "./components/FlightItem/FlightItem.tsx";
 import {useEffect, useState} from "react";
@@ -14,9 +14,10 @@ const App = () => {
     // console.log(fl.flight.legs[0]?.segments[1]?.stops !== 0) )
     //  console.log(a[0].flight.legs)
   //  console.log([...new Set(a)]) // десять уникальных компаний
+    const data: any = dataMock
 
-    const firstLegSegments = data.result.flights.map((fl) => fl.flight.legs[0].segments.length)
-    const secondLegSegments = data.result.flights.map((fl) => fl.flight.legs[1].segments.length)
+    const firstLegSegments = data?.result.flights.map((fl: any) => fl.flight.legs[0].segments.length)
+    const secondLegSegments = data.result.flights.map((fl: any) => fl.flight.legs[1].segments.length)
     const maxQuantityStops = Math.max(...firstLegSegments, ...secondLegSegments) - 1 // -1 т.к. длина сегментов = 1 - это без пересадок
     console.log(maxQuantityStops)
     const arrayWithQuantityStops = []
@@ -41,12 +42,12 @@ const App = () => {
     }, []);
 
 
-    const [arrayWithUniqCompany, setArrayWithUniqCompany] = useState<string[]>([...new Set(data.result.flights.map((fl) => fl.flight.carrier.caption))] as string[])
+    const [arrayWithUniqCompany, setArrayWithUniqCompany] = useState<string[]>([...new Set(data.result.flights.map((fl: any) => fl.flight.carrier.caption))] as string[])
 
     useEffect(() => {
 
         if (maxQuantityStops + 1 === stops.length || stops.length === 0) {
-            setArrayWithUniqCompany([...new Set(data.result.flights.filter(fl => (+fl.flight.price.total.amount >= minPrice) && (+fl.flight.price.total.amount <= maxPrice) ).map((fl) => fl.flight.carrier.caption))] as string[])
+            setArrayWithUniqCompany([...new Set(data.result.flights.filter((fl: any) => (+fl.flight.price.total.amount >= minPrice) && (+fl.flight.price.total.amount <= maxPrice) ).map((fl: any) => fl.flight.carrier.caption))] as string[])
         } else {
             setArrayWithUniqCompany([...new Set(filteredResults.map((fl) => fl.flight.carrier.caption))])
         }
